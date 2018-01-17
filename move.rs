@@ -6,6 +6,8 @@
 // You can always return to the original code by clicking the "Reset" button ->
 use std::env;
 use std::path::Path;
+use std::process::Command;
+
 // This is the main function
 fn main() {
     let name = env::var("TR_TORRENT_NAME").unwrap();
@@ -21,6 +23,12 @@ fn main() {
         println!("Yay dir");
     } else if path.is_file() {
         println!("Yay file");
+        Command::new("ls")
+            .arg(path)
+            .arg("-l")
+            .arg("-a")
+            .spawn()
+            .expect("ls command failed to start");
     } else {
         panic!("explicit panic");
     }
