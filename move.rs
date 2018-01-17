@@ -8,6 +8,14 @@ use std::env;
 use std::path::Path;
 use std::process::Command;
 
+fn move_file(from_file: &Path) {
+    Command::new("mv")
+        .arg(from_file.to_str().unwrap())
+        .arg("/home/andreip/")
+        .spawn()
+        .expect("mv command failed to start");
+}
+
 // This is the main function
 fn main() {
     let name = env::var("TR_TORRENT_NAME").unwrap();
@@ -22,13 +30,14 @@ fn main() {
     if path.is_dir() {
         println!("Yay dir");
     } else if path.is_file() {
-        println!("Yay file");
-        Command::new("ls")
-            .arg(path)
-            .arg("-l")
-            .arg("-a")
-            .spawn()
-            .expect("ls command failed to start");
+        move_file(path);
+        // println!("Yay file");
+        // Command::new("ls")
+        //     .arg(path)
+        //     .arg("-l")
+        //     .arg("-a")
+        //     .spawn()
+        //     .expect("ls command failed to start");
     } else {
         panic!("explicit panic");
     }
