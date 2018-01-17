@@ -16,5 +16,10 @@ fn main() {
     let result = [dir, name].join("/");
     println!("result: {}", result);
     
-    let _path = Path::new(&result);
+    let path = Path::new(&result);
+    if path.isDir() {
+        println!("Yay dir");
+    } else {
+        println!("Nay dir");
+    }
 }
