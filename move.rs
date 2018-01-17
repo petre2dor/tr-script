@@ -12,8 +12,16 @@ fn main() {
     // Print text to the console
     println!("Hello World2!");
 
-    match env::var("TR_TORRENT_NAME") {
-        Ok(lang) => println!("Language code: {}", lang),
-        Err(e) => println!("Couldn't read LANG ({})", e),
+    match env::var("TR_TORRENT_DIR") {
+        Ok(dir) => println!("TR_TORRENT_DIR: {}", dir),
+        Err(e) => println!("Couldn't read TR_TORRENT_DIR ({})", e),
     };
+
+    // match env::var("TR_TORRENT_NAME") {
+    //     Ok(name) => println!("TR_TORRENT_NAME: {}", name),
+    //     Err(e) => println!("Couldn't read TR_TORRENT_NAME ({})", e),
+    // };
+
+    let name = env::var("TR_TORRENT_NAME").unwrap();
+    println!("TR_TORRENT_NAME: {}", name);
 }
