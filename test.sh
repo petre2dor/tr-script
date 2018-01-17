@@ -1,0 +1,1 @@
+expoertTR_TORRENT_DIR și $TR_TORRENT_NAME
