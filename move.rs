@@ -17,7 +17,7 @@ fn main() {
     println!("result: {}", result);
     
     let path = Path::new(&result);
-    if path.isDir() {
+    if path.is_dir() {
         println!("Yay dir");
     } else {
         println!("Nay dir");
