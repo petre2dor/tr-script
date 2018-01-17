@@ -19,7 +19,9 @@ fn main() {
     let path = Path::new(&result);
     if path.is_dir() {
         println!("Yay dir");
+    } else if path.is_file() {
+        println!("Yay file");
     } else {
-        println!("Nay dir");
+        panic!("explicit panic");
     }
 }
