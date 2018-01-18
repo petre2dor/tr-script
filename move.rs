@@ -17,27 +17,26 @@ fn move_file(from_file: &Path) {
 }
 
 // This is the main function
-fn main() {
-    let name = env::var("TR_TORRENT_NAME").unwrap();
-    let dir = env::var("TR_TORRENT_DIR").unwrap();
-    println!("TR_TORRENT_NAME: {}", name);
-    println!("TR_TORRENT_DIR: {}", dir);
+fn main() {   
+    let env_torrent_dir = "TR_TORRENT_DIR";
+    let mut torrent_location = String::new();
+    match env::var(env_torrent_dir) {
+        Ok(val) => torrent_location = val,
+        Err(e) => println!("couldn't interpret {}: {}", env_torrent_dir, e),
+    }
 
-    let result = [dir, name].join("/");
-    println!("result: {}", result);
+    let env_torrent_name = "TR_TORRENT_NAME";
+    match env::var(env_torrent_name) {
+        Ok(torrent_name) => torrent_location.push_str(torrent_name.as_str()),
+        Err(e) => println!("couldn't interpret {}: {}", env_torrent_name, e),
+    }
+    println!("Location: {:?}", torrent_location);
     
-    let path = Path::new(&result);
+    let path = Path::new(&torrent_location);
     if path.is_dir() {
         println!("Yay dir");
     } else if path.is_file() {
         move_file(path);
-        // println!("Yay file");
-        // Command::new("ls")
-        //     .arg(path)
-        //     .arg("-l")
-        //     .arg("-a")
-        //     .spawn()
-        //     .expect("ls command failed to start");
     } else {
         panic!("explicit panic");
     }
