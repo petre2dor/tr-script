@@ -18,7 +18,8 @@ fn move_file(from_file: &Path) {
 
 // This is the main function
 fn main() {
-    let name = env::var("TR_TORRENT_NAME").unwrap();
+    let env_name_result = env::var("TR_TORRENT_NAME");
+    let name = env_name_result.unwrap();
     let dir = env::var("TR_TORRENT_DIR").unwrap();
     println!("TR_TORRENT_NAME: {}", name);
     println!("TR_TORRENT_DIR: {}", dir);
@@ -32,7 +33,7 @@ fn main() {
     } else if path.is_file() {
         move_file(path);
         // println!("Yay file");
-        // Command::new("ls")
+        // Command::new("ls")i
         //     .arg(path)
         //     .arg("-l")
         //     .arg("-a")

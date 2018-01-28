@@ -8,7 +8,8 @@
             "program": "${workspaceRoot}/target/debug/move",
             "env": {"TR_TORRENT_NAME":"my_torrent", "TR_TORRENT_DIR":"/tmp/"},
             "args": ["TR_TORRENT_NAME=torrent"],
-            "cwd": "${workspaceRoot}"
+            "cwd": "${workspaceRoot}",
+            "preLaunchTask": "build"
         },
     ]
 }
