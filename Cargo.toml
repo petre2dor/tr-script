@@ -1,0 +1,4 @@
+[package]
+name = "Move script"
+version = "0.0.1"
+authors = ["andrei@ceata.org"]

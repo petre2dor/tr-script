@@ -17,13 +17,12 @@ fn move_file(from_file: &Path) {
 }
 
 // This is the main function
-fn main() {   
-    let env_torrent_dir = "TR_TORRENT_DIR";
-    let mut torrent_location = String::new();
-    match env::var(env_torrent_dir) {
-        Ok(val) => torrent_location = val,
-        Err(e) => println!("couldn't interpret {}: {}", env_torrent_dir, e),
-    }
+fn main() {
+    let env_name_result = env::var("TR_TORRENT_NAME");
+    let name = env_name_result.unwrap();
+    let dir = env::var("TR_TORRENT_DIR").unwrap();
+    println!("TR_TORRENT_NAME: {}", name);
+    println!("TR_TORRENT_DIR: {}", dir);
 
     let env_torrent_name = "TR_TORRENT_NAME";
     match env::var(env_torrent_name) {
@@ -37,6 +36,13 @@ fn main() {
         println!("Yay dir");
     } else if path.is_file() {
         move_file(path);
+        // println!("Yay file");
+        // Command::new("ls")i
+        //     .arg(path)
+        //     .arg("-l")
+        //     .arg("-a")
+        //     .spawn()
+        //     .expect("ls command failed to start");
     } else {
         panic!("explicit panic");
     }
