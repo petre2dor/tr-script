@@ -1,0 +1,14 @@
+{
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "type": "lldb",
+            "request": "launch",
+            "name": "Debug move",
+            "program": "${workspaceRoot}/target/debug/move",
+            "env": {"TR_TORRENT_NAME":"my_torrent", "TR_TORRENT_DIR":"/tmp/"},
+            "args": ["TR_TORRENT_NAME=torrent"],
+            "cwd": "${workspaceRoot}"
+        },
+    ]
+}
